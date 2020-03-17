@@ -226,6 +226,62 @@ local windows = [
               |||,
             },
           },
+          {
+            alert: 'CortexWALCorruption',
+            expr: |||
+              rate(cortex_ingester_wal_corruptions_total[5m]) > 0
+            |||,
+            labels: {
+              severity: 'critical',
+            },
+            annotations: {
+              message: |||
+                {{ $labels.namespace }}/{{ $labels.instance }} has a corrupted WAL or checkpoint.
+              |||,
+            },
+          },
+          {
+            alert: 'CortexCheckpointCreationFailed',
+            expr: |||
+              increase(cortex_ingester_checkpoint_creations_failed_total[10m]) > 0
+            |||,
+            labels: {
+              severity: 'warning',
+            },
+            annotations: {
+              message: |||
+                {{ $labels.namespace }}/{{ $labels.instance }} failed to create checkpoint.
+              |||,
+            },
+          },
+          {
+            alert: 'CortexCheckpointCreationFailing',
+            expr: |||
+              increase(cortex_ingester_checkpoint_creations_failed_total[1h]) > 1
+            |||,
+            labels: {
+              severity: 'critical',
+            },
+            annotations: {
+              message: |||
+                {{ $labels.namespace }}/{{ $labels.instance }} is failing to create checkpoint.
+              |||,
+            },
+          },
+          {
+            alert: 'CortexCheckpointDeletionFailed',
+            expr: |||
+              increase(cortex_ingester_checkpoint_deletions_failed_total[10m]) > 0
+            |||,
+            labels: {
+              severity: 'warning',
+            },
+            annotations: {
+              message: |||
+                {{ $labels.namespace }}/{{ $labels.instance }} failed delete checkpoint.
+              |||,
+            },
+          },
         ],
       },
       {
