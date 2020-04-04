@@ -105,11 +105,11 @@
 
     storeMemcachedChunksConfig: if $._config.memcached_chunks_enabled then
       {
-        'memcached.hostname': 'memcached.%s.svc.cluster.local' % $._config.namespace,
-        'memcached.service': 'memcached-client',
-        'memcached.timeout': '3s',
-        'memcached.batchsize': 1024,
-        'memcached.consistent-hash': true,
+        'store.chunks-cache.memcached.hostname': 'memcached.%s.svc.cluster.local' % $._config.namespace,
+        'store.chunks-cache.memcached.service': 'memcached-client',
+        'store.chunks-cache.memcached.timeout': '3s',
+        'store.chunks-cache.memcached.batchsize': 1024,
+        'store.chunks-cache.memcached.consistent-hash': true,
       }
     else {},
 

@@ -13,10 +13,8 @@
       'ingester.num-tokens': 512,
       'ingester.join-after': '30s',
       'ingester.max-transfer-retries': 60,  // Each retry is backed off by 5s, so 5mins for new ingester to come up.
-      'ingester.claim-on-rollout': true,
       'ingester.heartbeat-period': '15s',
       'ingester.max-stale-chunk-idle': '5m',
-      'ingester.normalise-tokens': true,
 
       // Chunk building/flushing config.
       'ingester.chunk-encoding': 3,  // Bigchunk encoding
